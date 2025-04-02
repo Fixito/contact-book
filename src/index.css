@@ -1,12 +1,2 @@
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: system-ui;
-  line-height: 1.5;
-}
-
-button {
-  cursor: pointer;
-}
+@import 'tailwindcss';
+@plugin "daisyui";

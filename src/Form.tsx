@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import type { Contact, ContactWithoutId } from './App';
+import { useEffect, useRef } from "react";
+import type { Contact, ContactWithoutId } from "./App";
 
 interface FormProps {
   isEditing: boolean;
@@ -40,25 +40,40 @@ function Form({
   }, [isEditing]);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Add a new contact</h1>
-      <label htmlFor='name'>Name: </label>
-      <input
-        ref={inputRef}
-        type='text'
-        name='name'
-        id='name'
-        defaultValue={isEditing ? editedPerson?.name : ''}
-      />{' '}
-      <label htmlFor='city'>City: </label>
-      <input
-        type='text'
-        name='city'
-        id='city'
-        defaultValue={isEditing ? editedPerson?.city : ''}
-      />
-      <button>{!isEditing ? 'Add contact' : 'Edit contact'}</button>
-      {isEditing && <button onClick={reset}>Cancel</button>}
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-6 rounded-lg bg-white p-12 lg:flex-row"
+    >
+      <label htmlFor="name" className="input">
+        <span className="label">Name:</span>
+        <input
+          ref={inputRef}
+          type="text"
+          name="name"
+          id="name"
+          defaultValue={isEditing ? editedPerson?.name : ""}
+        />
+      </label>
+      <label htmlFor="city" className="input">
+        <span className="label">City:</span>
+        <input
+          type="text"
+          name="city"
+          id="city"
+          className="input"
+          defaultValue={isEditing ? editedPerson?.city : ""}
+        />
+      </label>
+      <div className="space-x-2">
+        <button className="btn btn-primary">
+          {!isEditing ? "Add Contact" : "Save"}
+        </button>
+        {isEditing && (
+          <button onClick={reset} className="btn btn-ghost">
+            Cancel
+          </button>
+        )}
+      </div>
     </form>
   );
 }

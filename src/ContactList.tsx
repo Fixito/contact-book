@@ -1,4 +1,4 @@
-import type { Contact } from './App.tsx';
+import type { Contact } from "./App.tsx";
 
 interface ContactListProps {
   contacts: Contact[];
@@ -8,7 +8,7 @@ interface ContactListProps {
 
 function ContactList({ contacts, handleEdit, handleDelete }: ContactListProps) {
   return (
-    <div>
+    <div className="grid grid-cols-1 gap-6 py-20 md:grid-cols-2 lg:grid-cols-3">
       {contacts.map((contact) => {
         return (
           <Contact
@@ -33,14 +33,21 @@ function Contact({ contact, handleEdit, handleDelete }: ContactProps) {
   const { id, name, city } = contact;
 
   return (
-    <article>
-      <h3>{name}</h3>
-      <p>
-        <em>City:</em> <span>{city}</span>
-      </p>
-      <div>
-        <button onClick={() => handleEdit(contact)}>Edit</button>
-        <button onClick={() => handleDelete(id)}>Delete</button>
+    <article className="card bg-base-100 shadow-sm">
+      <div className="card-body">
+        <h2 className="card-title">{name}</h2>
+        <p className="capitalize">{city}</p>
+        <div className="card-actions justify-end">
+          <button
+            className="btn btn-primary"
+            onClick={() => handleEdit(contact)}
+          >
+            Edit
+          </button>
+          <button className="btn btn-ghost" onClick={() => handleDelete(id)}>
+            Delete
+          </button>
+        </div>
       </div>
     </article>
   );

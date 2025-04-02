@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import Form from './Form.tsx';
-import ContactList from './ContactList.tsx';
+import { useState } from "react";
+import ContactList from "./ContactList.tsx";
+import Form from "./Form.tsx";
+import Hero from "./Hero.tsx";
 
 export interface ContactWithoutId {
   name: string;
@@ -24,7 +25,7 @@ function App() {
 
   const editContact = (data: ContactWithoutId) => {
     const newContacts = contacts.map((contact) =>
-      contact.id === editedPerson?.id ? { ...contact, ...data } : contact
+      contact.id === editedPerson?.id ? { ...contact, ...data } : contact,
     );
     setContacts(newContacts);
   };
@@ -46,7 +47,8 @@ function App() {
   };
 
   return (
-    <main>
+    <main className="mx-auto min-h-dvh max-w-7xl px-2 sm:px-6 lg:px-8">
+      <Hero />
       <Form
         isEditing={isEditing}
         editedPerson={editedPerson}
@@ -54,7 +56,6 @@ function App() {
         editContact={editContact}
         reset={reset}
       />
-
       <ContactList
         contacts={contacts}
         handleDelete={handleDelete}
